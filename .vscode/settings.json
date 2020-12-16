@@ -1,0 +1,8 @@
+{
+  "search.searchEditor.reusePriorSearchConfiguration": true,
+  "bracket-pair-colorizer-2.excludedLanguages": [
+  
+  ],
+  "editor.tabSize": 2,
+  "editor.wordWrapColumn": 120
+}
