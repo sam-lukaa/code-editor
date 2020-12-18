@@ -7,11 +7,13 @@ export default function App() {
   const [html, setHtml] = useLocalStorage("html", "");
   const [css, setCss] = useLocalStorage("css", "");
   const [js, setJs] = useLocalStorage("js", "");
+  const [python, setPython] = useState("");
   const [srcDoc, setSrcDoc] = useState("");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSrcDoc(`
+      ${python}
   <html>
   <body>${html}</body>
   <style>${css}</style>
@@ -20,10 +22,23 @@ export default function App() {
   `);
     }, 1000);
     return () => clearTimeout(timeout);
-  }, [html, css, js]);
+  }, [html, css, js, python]);
 
   return (
     <Fragment>
+      <h4
+        style={{
+          color: "#222629",
+          textAlign: "center",
+        }}
+      >
+        Use <code style={{
+          background: "gray",
+          color:"white",
+          padding: "2px"
+        }}>ctrl + space</code> for auto-complete suggestions
+      </h4>{" "}
+      <br />
       <div className="pane top-pane">
         <Editor
           language="xml"
@@ -42,6 +57,12 @@ export default function App() {
           displayName="JS"
           value={js}
           onChange={setJs}
+        />
+        <Editor
+          language="python"
+          displayName="Python"
+          value={python}
+          onChange={setPython}
         />
       </div>
       <div className="pane">
